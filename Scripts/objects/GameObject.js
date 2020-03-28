@@ -31,6 +31,7 @@ var objects;
             _this._velocity = new objects.Vector2(0, 0);
             _this._isColliding = false;
             _this._isCentered = false;
+            _this._isActive = false;
             _this.width = _this.getBounds().width;
             _this.height = _this.getBounds().height;
             if (fifth != undefined) {
@@ -126,6 +127,16 @@ var objects;
                 if (newState) {
                     this._centerGameObject();
                 }
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(GameObject.prototype, "isActive", {
+            get: function () {
+                return this._isActive;
+            },
+            set: function (v) {
+                this._isActive = v;
             },
             enumerable: true,
             configurable: true

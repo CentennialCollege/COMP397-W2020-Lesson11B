@@ -11,8 +11,9 @@ module objects
         private _velocity:Vector2;
         private _isColliding:boolean;
         private _isCentered:boolean;
+        private _isActive : boolean;
         private _type: enums.GameObjectType;
-        
+
         // PUBLIC PROPERTIES
         get width():number
         {
@@ -92,6 +93,16 @@ module objects
             }
         }
 
+        public get isActive() : boolean 
+        {
+            return this._isActive;
+        }
+
+        public set isActive(v : boolean) 
+        {
+            this._isActive = v;
+        }
+
         public get type() : enums.GameObjectType 
         {
             return this._type;
@@ -119,6 +130,7 @@ module objects
             this._velocity = new Vector2(0, 0);
             this._isColliding = false;
             this._isCentered = false;
+            this._isActive = false;
             
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;

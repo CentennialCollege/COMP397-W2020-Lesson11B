@@ -8,6 +8,7 @@ module enums
         OCEAN,
         BUTTON,
         PLAYER,
+        BULLET,
         UNDEFINED,
         NUM_OF_TYPES
     }
