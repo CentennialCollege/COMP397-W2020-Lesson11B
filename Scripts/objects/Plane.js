@@ -44,7 +44,7 @@ var objects;
         Plane.prototype._move = function () {
             var newPositionX = util.Mathf.Lerp(this.position.x, this.stage.mouseX, 0.05);
             this.position = new objects.Vector2(newPositionX, this._verticalPosition);
-            this._bulletSpawn = new objects.Vector2(this.position.x, this.position.y - 10);
+            this._bulletSpawn = new objects.Vector2(this.position.x, this.position.y - this.halfHeight - 10);
         };
         // PUBLIC METHODS
         Plane.prototype.Start = function () {
@@ -57,7 +57,9 @@ var objects;
         Plane.prototype.Update = function () {
             this._move();
             this._checkBounds();
-            this.FireBullet();
+            if (createjs.Ticker.getTicks() % 10 == 0) {
+                this.FireBullet();
+            }
         };
         Plane.prototype.Reset = function () {
         };

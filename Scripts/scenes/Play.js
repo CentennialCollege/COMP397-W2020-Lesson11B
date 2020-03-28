@@ -27,6 +27,7 @@ var scenes;
         // PUBLIC METHODS
         //initialize and instatiate
         Play.prototype.Start = function () {
+            config.Game.CURRENT_SCENE = this;
             this._ocean = new objects.Ocean();
             this._plane = new objects.Plane();
             this._island = new objects.Island();
@@ -59,6 +60,10 @@ var scenes;
             this.addChild(this._island);
             this.addChild(this._plane);
             this._bulletManager.AddBulletsToScene();
+            /* let bullet = config.Game.BULLET_MANAGER.GetBullet();
+            console.log(bullet);
+            bullet.position = new objects.Vector2(320, 240);
+            bullet.isActive = true; */
             for (var _i = 0, _a = this._clouds; _i < _a.length; _i++) {
                 var cloud = _a[_i];
                 this.addChild(cloud);

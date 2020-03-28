@@ -29,7 +29,8 @@ module scenes
         //initialize and instatiate
         public Start(): void 
         {
-            
+            config.Game.CURRENT_SCENE = this;
+
             this._ocean = new objects.Ocean();
             this._plane = new objects.Plane();
             this._island = new objects.Island();
@@ -78,6 +79,11 @@ module scenes
             this.addChild(this._plane);
 
             this._bulletManager.AddBulletsToScene();
+
+            /* let bullet = config.Game.BULLET_MANAGER.GetBullet();
+            console.log(bullet);
+            bullet.position = new objects.Vector2(320, 240);
+            bullet.isActive = true; */
 
             for (const cloud of this._clouds) {
                 this.addChild(cloud);

@@ -29,15 +29,16 @@ module managers
                 let bullet = new objects.Bullet();
                 this._bulletPool.push(bullet);
             }
-
-            console.log(this._bulletPool);
         }
 
         // PUBLIC METHODS
 
         public GetBullet():objects.Bullet
         {
-            return this._bulletPool.shift();
+            let bullet = this._bulletPool.shift();
+            this._bulletPool.push(bullet);
+
+            return bullet;
         }
 
         public ReturnBullet(bullet: objects.Bullet):void
@@ -47,6 +48,7 @@ module managers
 
         public AddBulletsToScene():void
         {
+            console.log("bullet manager: " + config.Game.CURRENT_SCENE);
             this._bulletPool.forEach(bullet => {
                config.Game.CURRENT_SCENE.addChild(bullet);
             });

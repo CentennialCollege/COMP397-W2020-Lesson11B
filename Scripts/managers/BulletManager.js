@@ -17,16 +17,18 @@ var managers;
                 var bullet = new objects.Bullet();
                 this._bulletPool.push(bullet);
             }
-            console.log(this._bulletPool);
         };
         // PUBLIC METHODS
         BulletManager.prototype.GetBullet = function () {
-            return this._bulletPool.shift();
+            var bullet = this._bulletPool.shift();
+            this._bulletPool.push(bullet);
+            return bullet;
         };
         BulletManager.prototype.ReturnBullet = function (bullet) {
             this._bulletPool.push(bullet);
         };
         BulletManager.prototype.AddBulletsToScene = function () {
+            console.log("bullet manager: " + config.Game.CURRENT_SCENE);
             this._bulletPool.forEach(function (bullet) {
                 config.Game.CURRENT_SCENE.addChild(bullet);
             });

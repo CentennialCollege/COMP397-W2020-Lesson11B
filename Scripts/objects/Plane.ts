@@ -42,7 +42,7 @@ module objects
         {
             let newPositionX = util.Mathf.Lerp(this.position.x, this.stage.mouseX, 0.05);
             this.position = new Vector2(newPositionX, this._verticalPosition);
-            this._bulletSpawn = new Vector2(this.position.x, this.position.y - 10);
+            this._bulletSpawn = new Vector2(this.position.x, this.position.y - this.halfHeight - 10);
         }
         
         // PUBLIC METHODS
@@ -59,7 +59,12 @@ module objects
         {
             this._move();
             this._checkBounds();
+
+           if(createjs.Ticker.getTicks() % 10 == 0)
+           {
             this.FireBullet();
+           }
+            
         }
 
         public Reset(): void 
