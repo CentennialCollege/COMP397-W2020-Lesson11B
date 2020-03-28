@@ -38,12 +38,15 @@ var scenes;
             }
             this._scoreBoard = new managers.ScoreBoard();
             config.Game.SCORE_BOARD = this._scoreBoard;
+            this._bulletManager = new managers.BulletManager();
+            config.Game.BULLET_MANAGER = this._bulletManager;
             this.Main();
         };
         Play.prototype.Update = function () {
             var _this = this;
             this._ocean.Update();
             this._plane.Update();
+            this._bulletManager.Update();
             this._island.Update();
             managers.Collision.AABBCheck(this._plane, this._island);
             this._clouds.forEach(function (cloud) {
@@ -55,6 +58,7 @@ var scenes;
             this.addChild(this._ocean);
             this.addChild(this._island);
             this.addChild(this._plane);
+            this._bulletManager.AddBulletsToScene();
             for (var _i = 0, _a = this._clouds; _i < _a.length; _i++) {
                 var cloud = _a[_i];
                 this.addChild(cloud);

@@ -56,7 +56,7 @@ module scenes
                 config.Game.LIVES = 5;
                 config.Game.SCORE = 0;
 
-                config.Game.SCENE = scenes.State.PLAY;
+                config.Game.SCENE_STATE = scenes.State.PLAY;
             });
 
             this.addChild(this._scoreBoard.highScoreLabel);

@@ -42,7 +42,7 @@ module objects
             this.type = enums.GameObjectType.BULLET;
             this._verticalSpeed = 5; // 5 px per frame
             this.velocity = new Vector2(0, -this._verticalSpeed);
-            this.Reset();
+            this.position = new Vector2(0, 0);
         }
 
         public Update(): void 
@@ -58,6 +58,7 @@ module objects
         {
           this.position = new Vector2(-1000, -1000);
           this.isActive = false;
+          config.Game.BULLET_MANAGER.ReturnBullet(this);
         }
         
     }

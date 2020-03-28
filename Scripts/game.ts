@@ -98,7 +98,7 @@ let Game = (function(){
         config.Game.OCEAN_ATLAS = oceanAtlas;
         
         currentSceneState = scenes.State.NO_SCENE;
-        config.Game.SCENE = scenes.State.START;
+        config.Game.SCENE_STATE = scenes.State.START;
     }
 
     /**
@@ -107,7 +107,7 @@ let Game = (function(){
      */
     function Update():void
     {
-        if(currentSceneState != config.Game.SCENE)
+        if(currentSceneState != config.Game.SCENE_STATE)
         {
             Main();
         }
@@ -136,7 +136,7 @@ let Game = (function(){
 
         // switch to the new scene
 
-        switch(config.Game.SCENE)
+        switch(config.Game.SCENE_STATE)
         {
             case scenes.State.START:
                 console.log("switch to Start Scene");
@@ -152,7 +152,8 @@ let Game = (function(){
                 break;
         }
 
-        currentSceneState = config.Game.SCENE;
+        config.Game.CURRENT_SCENE = currentScene;
+        currentSceneState = config.Game.SCENE_STATE;
         stage.addChild(currentScene);
 
     }

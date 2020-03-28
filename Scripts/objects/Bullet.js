@@ -42,7 +42,7 @@ var objects;
             this.type = enums.GameObjectType.BULLET;
             this._verticalSpeed = 5; // 5 px per frame
             this.velocity = new objects.Vector2(0, -this._verticalSpeed);
-            this.Reset();
+            this.position = new objects.Vector2(0, 0);
         };
         Bullet.prototype.Update = function () {
             if (this.isActive) {
@@ -53,6 +53,7 @@ var objects;
         Bullet.prototype.Reset = function () {
             this.position = new objects.Vector2(-1000, -1000);
             this.isActive = false;
+            config.Game.BULLET_MANAGER.ReturnBullet(this);
         };
         return Bullet;
     }(objects.GameObject));

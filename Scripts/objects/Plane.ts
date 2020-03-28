@@ -5,6 +5,7 @@ module objects
         // PRIVATE INSTANCE MEMBERS
         private _verticalPosition:number;
         private _engineSound : createjs.AbstractSoundInstance;
+        private _bulletSpawn: objects.Vector2;
         
         // PUBLIC PROPERTIES
         public get engineSound() : createjs.AbstractSoundInstance 
@@ -41,6 +42,7 @@ module objects
         {
             let newPositionX = util.Mathf.Lerp(this.position.x, this.stage.mouseX, 0.05);
             this.position = new Vector2(newPositionX, this._verticalPosition);
+            this._bulletSpawn = new Vector2(this.position.x, this.position.y - 10);
         }
         
         // PUBLIC METHODS
@@ -57,11 +59,21 @@ module objects
         {
             this._move();
             this._checkBounds();
+            this.FireBullet();
         }
 
         public Reset(): void 
         {
 
+        }
+
+        public FireBullet()
+        {
+            let bullet = config.Game.BULLET_MANAGER.GetBullet();
+            console.log(bullet);
+
+            bullet.isActive = true;
+            bullet.position = this._bulletSpawn;
         }
 
         

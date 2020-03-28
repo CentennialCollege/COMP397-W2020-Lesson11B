@@ -78,14 +78,14 @@ var Game = (function () {
         oceanAtlas = new createjs.SpriteSheet(oceanData);
         config.Game.OCEAN_ATLAS = oceanAtlas;
         currentSceneState = scenes.State.NO_SCENE;
-        config.Game.SCENE = scenes.State.START;
+        config.Game.SCENE_STATE = scenes.State.START;
     }
     /**
      * This function is triggered every frame (16ms)
      * The stage is then erased and redrawn
      */
     function Update() {
-        if (currentSceneState != config.Game.SCENE) {
+        if (currentSceneState != config.Game.SCENE_STATE) {
             Main();
         }
         currentScene.Update();
@@ -103,7 +103,7 @@ var Game = (function () {
             stage.removeAllChildren();
         }
         // switch to the new scene
-        switch (config.Game.SCENE) {
+        switch (config.Game.SCENE_STATE) {
             case scenes.State.START:
                 console.log("switch to Start Scene");
                 currentScene = new scenes.Start();
@@ -117,7 +117,8 @@ var Game = (function () {
                 currentScene = new scenes.End();
                 break;
         }
-        currentSceneState = config.Game.SCENE;
+        config.Game.CURRENT_SCENE = currentScene;
+        currentSceneState = config.Game.SCENE_STATE;
         stage.addChild(currentScene);
     }
     window.addEventListener('load', Preload);

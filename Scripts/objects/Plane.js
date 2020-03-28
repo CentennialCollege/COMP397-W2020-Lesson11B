@@ -44,6 +44,7 @@ var objects;
         Plane.prototype._move = function () {
             var newPositionX = util.Mathf.Lerp(this.position.x, this.stage.mouseX, 0.05);
             this.position = new objects.Vector2(newPositionX, this._verticalPosition);
+            this._bulletSpawn = new objects.Vector2(this.position.x, this.position.y - 10);
         };
         // PUBLIC METHODS
         Plane.prototype.Start = function () {
@@ -56,8 +57,15 @@ var objects;
         Plane.prototype.Update = function () {
             this._move();
             this._checkBounds();
+            this.FireBullet();
         };
         Plane.prototype.Reset = function () {
+        };
+        Plane.prototype.FireBullet = function () {
+            var bullet = config.Game.BULLET_MANAGER.GetBullet();
+            console.log(bullet);
+            bullet.isActive = true;
+            bullet.position = this._bulletSpawn;
         };
         return Plane;
     }(objects.GameObject));
